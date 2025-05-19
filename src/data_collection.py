@@ -16,7 +16,11 @@ driver.get(url)
 select_element = driver.find_element(By.NAME, 'season')
 select = Select(select_element)
 options_list = select.options 
-select.select_by_visible_text("2025")
-
+select.select_by_visible_text("2024")
+select_element = driver.find_element(By.NAME, "evvent")
+select = Select(select_element)
+select.select_by_visible_text("LE MANS")
+found = driver.find_element(By.XPATH, "/html/body/div[3]/div[1]/div[2]/div[3]/table/tbody/tr/td/div[2]/div[17]/a")
+found.click()
 
 

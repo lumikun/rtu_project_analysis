@@ -15,6 +15,22 @@ df = pd.read_csv("raw_data/23_Analysis_Race_Hour 24.CSV", sep=';')
 filtered_df = df[df['CLASS'].str.contains("HYPERCAR")]
 filtered_df = filtered_df.reset_index(drop=True)
 
+team = "Ferrari AF Corse"
+team_data = filtered_df[filtered_df["TEAM"] == team]
+team_data['LAP_TIME_S'] = team_data['LAP_TIME'].apply(time_to_seconds)
+drivers = team_data['DRIVER_NAME'].unique()
+for driver in drivers:
+    driver_data = team_data[team_data['DRIVER_NAME'] == driver]
+    plt.plot(driver_data['LAP_NUMBER'], driver_data['LAP_TIME_S'], label=driver)
+
+plt.xlabel('Lap Number')
+plt.ylabel('Lap Time')
+plt.title(f"Lap Times for drivers in {team}")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
 ferrari = filtered_df.loc[filtered_df['NUMBER'] == 50]
 ferrari = ferrari.reset_index(drop=True)
 ferrari['LAP_TIME_S'] = ferrari['LAP_TIME'].apply(time_to_seconds)

@@ -53,8 +53,7 @@ def analysis(f, s=None):
     plt.ylabel('Lap Time (MM:SS.ms)')
     plt.title(f"Lap times for {fastest_driver}")
     plt.grid(True)
-    plt.show()    
-
+    plt.show()
 
     if s == None:
         print("No Savefile provided.")
